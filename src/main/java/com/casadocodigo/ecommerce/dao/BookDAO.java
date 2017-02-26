@@ -22,6 +22,6 @@ public class BookDAO {
     
     public List<Book> list(){
         
-        return entityManager.createNamedQuery("Book.findAll").getResultList();
+        return entityManager.createQuery("SELECT distinct(b) FROM Book b join fetch b.authorList").getResultList();
     }
 }

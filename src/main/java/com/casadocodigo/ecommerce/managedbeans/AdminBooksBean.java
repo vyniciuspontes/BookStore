@@ -46,10 +46,22 @@ public class AdminBooksBean {
     
     private List<Author> authors = new ArrayList<>();
     
+    private List<Integer> selectedAuthorsIds = new ArrayList<>();
+    
     private Part summary;
+    
+    private Part cover;
     
     @Inject
     private AmazonFileSaver fileSaver;
+
+    public Part getCover() {
+        return cover;
+    }
+
+    public void setCover(Part cover) {
+        this.cover = cover;
+    }
 
     public void setSummary(Part summary) {
         this.summary = summary;
@@ -66,8 +78,6 @@ public class AdminBooksBean {
     public void setAuthors(List<Author> authors) {
         this.authors = authors;
     }
-    
-    private List<Integer> selectedAuthorsIds = new ArrayList<>();
 
     @PostConstruct
     public void loadObjects() {
@@ -97,8 +107,16 @@ public class AdminBooksBean {
     @Transactional(dontRollbackOn = Exception.class)
     public String save() throws IOException {
         //populateBookAuthor();
-        String sumaryPath = fileSaver.write("summaries", summary);
-        product.setSummaryPath(sumaryPath);
+        
+        if(summary != null) {
+            String sumaryPath = fileSaver.write("summaries", summary);
+            product.setSummaryPath(sumaryPath);
+        }
+        if(cover != null) {
+            String coverPath = fileSaver.write("covers", cover);
+            product.setCoverPath(coverPath);
+        }
+        
         bookDAO.save(product);
         messagesHelper.addFlash(new FacesMessage("Cadastro realizado com sucesso !"));
         
@@ -114,10 +132,10 @@ public class AdminBooksBean {
     
     private void populateBookAuthor() {
         
-        selectedAuthorsIds.stream().
+        /*selectedAuthorsIds.stream().
                 map((id) -> authorDAO.findById(id)).
                 forEach((a) -> { product.add(a);}
-        );
+        );*/
     }
     
     

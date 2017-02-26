@@ -1,7 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/** 
+ * 
  */
 package com.casadocodigo.ecommerce.converter;
 
@@ -9,8 +7,8 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-/**
- *
+/** Resolves Faces conversion from String to Integer. Avoid the "javax.servlet.ServletException: 
+ * java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Integer"
  * @author vyniciuspontes
  */
 public class IntegerConverter implements Converter{

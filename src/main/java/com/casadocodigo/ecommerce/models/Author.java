@@ -45,10 +45,7 @@ public class Author implements Serializable {
     @Size(max = 2147483647)
     @Column(name = "name")
     private String name;
-    @JoinTable(name = "author_book", joinColumns = {
-        @JoinColumn(name = "author_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "book_id", referencedColumnName = "id")})
-    @ManyToMany
+    @ManyToMany(mappedBy = "authorList")
     private List<Book> bookList;
 
     public Author() {

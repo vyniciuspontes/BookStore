@@ -1,60 +1,48 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <h:head>
-        <title>Livraria Vynicius</title>
-        <link href="index.css" rel="stylesheet"></link> 
-    </h:head>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <h:body>
-        <h:messages/>
+        <h:messages />
         <h:form enctype="multipart/form-data">
             <div>
-                <h:outputLabel	value="Capa do livro"/>
-                <h:inputFile	id="summary" value="#{adminBooksBean.summary}"
-                    label="Sumário do livro"/>
-            </div>
-            <div>
                 <h:outputLabel>Titulo</h:outputLabel>
-                <h:inputText value="#{adminBooksBean.product.title}"
-                              id="titulo"
-                             />
-                <h:message for="titulo"/>
+                <h:inputText value="#{adminBooksBean.product.title}" label="titulo"/>
             </div>
             <div>
                 <h:outputLabel>Descrição</h:outputLabel>
                 <h:inputTextarea cols="20" rows="10"
-                    value="#{adminBooksBean.product.description}"
-                     id="descricao" />
-                <h:message for="descricao"/>
+                                 value="#{adminBooksBean.product.description}" />
             </div>
             <div>
                 <h:outputLabel>Número de páginas</h:outputLabel>
-                <h:inputText value="#{adminBooksBean.product.pagesNumber}"
-                     id="numPag" />
-                <h:message for="numPag"/>
+                <h:inputText value="#{adminBooksBean.product.pagesNumber}" />
             </div>
             <div>
                 <h:outputLabel>Preço</h:outputLabel>
-                <h:inputText value="#{adminBooksBean.product.price}"
-                     id="preco" />
-                    <h:message for="preco"/>
+                <h:inputText value="#{adminBooksBean.product.price}" id="preco" />
+            </div>
+            <div>
+                <h:outputLabel>Data de lançamento</h:outputLabel>
+                <h:inputText value="#{adminBooksBean.product.releaseDate}" pt:type="date"/>							
             </div>
             <div>
                 <h:outputLabel>Autores</h:outputLabel>
-                <h:selectManyListbox	
-                    id="autores"
-                    value="#{adminBooksBean.product.authorList}"
-                    converter="entityConverter">
-                    <f:selectItems	value="#{adminBooksBean.authors}"
-                                   var="author"
-                                   itemLabel="#{author.name}" itemValue="#{author}"	/>
+                <h:selectManyListbox value="#{adminBooksBean.product.authorList}"
+                                     converter="entityConverter">
+                    <f:selectItems value="#{adminBooksBean.authors}" var="author"
+                                   itemLabel="#{author.name}" itemValue="#{author}" />
                 </h:selectManyListbox>
-                <h:message for="autores"/>
             </div>
-            <h:commandButton value="Gravar" action="#{adminBooksBean.save()}"/>
+            <div>
+                <h:outputLabel value="Sumário do livro"/>
+                <h:inputFile id="summary" value="#{adminBooksBean.summary}" label="Sumário do livro"/>
+            </div>
+            <div>
+                <h:outputLabel value="Capa do livro"/>
+                <h:inputFile id="cover" value="#{adminBooksBean.cover}" label="Capa do livro"/>
+            </div>
+            <h:commandButton value="Gravar" action="#{adminBooksBean.save}" />
         </h:form>
     </h:body>
 </html>
-
