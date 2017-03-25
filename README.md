@@ -1,2 +1,2 @@
 # BookStore
-Simple BookStore with JavaEE and Glassfish
+Simple BookStore with JavaEE and Wildfly
